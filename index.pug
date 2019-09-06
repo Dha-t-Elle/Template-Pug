@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="/style/main.css")
+        link(rel="stylesheet", href="/style/mobile.css")
+        link(href='https://fonts.googleapis.com/css?family=Montserrat:300,400,700', rel='stylesheet')
+    body
+        header
+            nav.navigation
+                .content
+                    .navigation__currency
+                        .currency__menu
+                        ul.currency__menu--list
+                            li.currency__menu--item
+                            a.currency__menu--link(href='#') Dropdown
+                            li.currency__menu--item
+                            a.currency__menu--link(href='#') Dropdown
+                            li.currency__menu--item
+                            a.currency__menu--link(href='#') Dropdown
+                        | Currency: GBP
+                        span.icon__currency
+                        img(src='/img/down__menu.png', alt='', srcset='')
+                    .navigation__shop
+                        ul.login__user
+                            li.login__item--reg
+                                a.login__link(href='#') Register
+                            li.login__item--sing
+                                a.login__link(href='#') Sing in
+                        .navigation__empty
+                            .currency__menu
+                                ul.currency__menu--list
+                                li.currency__menu--item
+                                    a.currency__menu--link(href='#') Dropdown
+                                li.currency__menu--item
+                                    a.currency__menu--link(href='#') Dropdown
+                                li.currency__menu--item
+                                    a.currency__menu--link(href='#') Dropdown
+                            span.icon
+                                img(src='/img/down.png', alt='', srcset='')
+                            span.icon  empty
+                                span.icon
+                                    img(src='/img/arrow.png', alt='', srcset='')
+            menu.menus
+                a(href='#')
+                    img.menu__logo(src='/img/logo.png', alt='')
+                div.menu
+                    ul.navigation__menu-list
+                        li.navigation__menu-item
+                            a.navigation__menu-link(href='#')
+                                | Mens
+                            img.navigation__menu-img(src='/img/down__menu.png', alt='', srcset='')
+                            mixin dropmenu 
+                                .menu__column
+                                    each col1 in ['Casual']
+                                        ul.navigation__col
+                                            h4= col1
+                                            each title in ['Jackets', 'Hoodies & Sweatshirts', 'Polo Shirst','Sportswear', 'Trousers & Chinos', 'T-Shirts']
+                                                li.navigation__col-item
+                                                    a.navigation__col-link(href='#')= title
+                                    each col2 in ['Formal']
+                                        ul.navigation__col
+                                            h4= col2
+                                            each titles in ['Jackets', 'Shirts', 'Suits', 'Trousers']
+                                                li.navigation__col-item
+                                                    a.navigation__col-link(href='#')= titles
+                                    .navigation__sale
+                                        span
+                                            b
+                                                | Autumn sale!
+                                        span
+                                            |  up to 50% off
+                            +dropmenu
+                        li.navigation__menu-item
+                            a.navigation__menu-link(href='#')
+                                | Women
+                            img.navigation__menu-img(src='/img/down__menu.png', alt='', srcset='')
+                            +dropmenu
+                        li.navigation__menu-item
+                            a.navigation__menu-link(href='#')
+                                | The brand
+                            img.navigation__menu-img(src='/img/down__menu.png', alt='', srcset='')
+                            +dropmenu
+                        li.navigation__menu-item
+                            a.navigation__menu-link(href='#')
+                                | Local stores
+                            img.navigation__menu-img(src='/img/down__menu.png', alt='', srcset='')
+                            +dropmenu
+                        li.navigation__menu-item
+                            a.navigation__menu-link(href='#')
+                                | Look Book
+                            img.navigation__menu-img(src='/img/down__menu.png', alt='', srcset='')
+                            +dropmenu
+                    input(type='search', placeholder='Search..')
+
+           
+        section.banner
+            .banner__image(style='background-image: url(/../img/bg.png);')
+            .banner__block
+                button.banner__button Shop men's collection
+        section.tabs
+            div.tabs__menu
+                ul.tabs__list
+                    li.tabs__item.active
+                        a.tabs__link(href='#') Popular
+                    li.tabs__item
+                        a.tabs__link(href='#') New Arrivals
+                    li.tabs__item
+                        a.tabs__link(href='#') Best Sellers
+                    li.tabs__item
+                        a.tabs__link(href='#') Special offers
+                    li.tabs__item
+                        a.tabs__link(href='#') Coming soon
+            .shop
+                mixin shop-item(obj)
+                    - 
+                        var def = {
+                            price: 47.50,
+                            imageName: 'item-2.png',
+                            imgMini: 'item-4.png',
+                            title: 'Womens burnt orange casual tee  £29.95',
+                            curency: '£',
+                            big: false
+                        };
+
+                    - var params = Object.assign({}, def, obj);
+
+                    .shop__item(
+                        class={ 
+                            'shop__item--big' : params.big ,
+                        })
+                        
+                        img.shop__item-img(src='/img/' + params.imageName)
+
+                        if params.imgMini
+                            .hover
+                                img.hover__img(src='/img/' + params.imgMini)
+                                img.hover__img-two(src='/img/' + params.imgMini)
+                        .hover__price
+                            span 
+                                sup= params.curency
+                            span.hover__span-value= params.price
+                        .hover__text
+                            if params.title
+                                .hover__text-title= params.title
+                            
+                            .hover__text-info
+                                | Classic casual t-shirt for women on the move.  100% cotton.
+                                .hover__icon
+                                    .hover__span
+                                        img.add(src="/img/add.png", alt="")
+                                    .hover__span
+                                        img.like(src="/img/like.png", alt="")
+                                    .hover__span    
+                                        img.resize(src="/img/resize.png", alt="")
+                .shop__list-one
+                    .shop__block-one
+                        +shop-item({imgMini: 'item-1.png',  imageName: 'item-1.png',  price: 89.99})
+                        +shop-item({imgMini: 'item-2.png',  imageName: 'item-2.png',})
+                    .shop__block-two
+                        +shop-item({imgMini: 'item-4.png',  imageName: 'item-4.png', price: 69.95})       
+                .shop__list-two
+                    .shop__block-three
+                        +shop-item({imgMini: 'item-5.png',  imageName: 'item-5.png', price: 29.95})
+                        +shop-item({imgMini: 'item-6.png',  imageName: 'item-6.png', price: 34.79})
+                    .shop__block-four
+                        +shop-item({imgMini: 'item-3.png',  imageName: 'item-3.png',priceTwo:107, price: 89.99})
+        hr
+        //- section.people
+        //-     mixin block 
+        //-         .people__block
+        //-             .people__img
+        //-                 img.people__img-item(src="/img/people-1.png", alt="", srcset="")
+        //-             .people__text
+        //-                 each texts in ["men's"]
+        //-                     .people__text-h1= texts
+        //-                 each textsH2 in [" lookbook"]
+        //-                     .people__text-h2=textsH2
+        //-                 each text in ['Lorem ipsum dolor sit amet eras facilisis consectetur adipiscing elit lor, integer lorem consecteur dignissim laciniqui. Elementum metus facilisis ut phasellu.']
+        //-                     .people__text-p= text
+        //-                 each btn in ['View Now']
+        //-                     .people__btn= btn
+        //-     +block
+        //-     +block
+        //-     +block
+        footer.footer
+            .content
+                each column in ['Information']
+                    ul.footer__list-one
+                        h5= column
+                        each list in ['Look Book', 'The brand', 'Local stores', 'Customer service', 'Privacy & cookies Site']
+                            li.footer__item
+                                a.footer__link(href='#')= list
+
+                each column in ['Wy by from US']
+                    ul.footer__list-one
+                        h5= column
+                        each list in ['Shipping & returns', 'Secure shopping', 'Testimonials', 'Award winning', 'Privacy & cookies Site', 'Ethical trading']
+                            li.footer__item
+                                a.footer__link(href='#')= list
+
+                each column in ['Your account']
+                    ul.footer__list-one
+                        h5= column
+                        each list in ['Sign in', 'Register', 'View cart', 'View your lookbook', 'Track an order','Update information']
+                            li.footer__item
+                                a.footer__link(href='#')= list
+
+                each column in ['Lookbook']
+                    ul.footer__list-one
+                        h5= column
+                        each list in ['Latest posts', 'Men’s lookbook', 'Women’s lookbook', 'Lookbooks RSS feed', 'View your lookbook','Delete your lookbook']
+                            li.footer__item
+                                a.footer__link(href='#')= list
+
+                each column in ['Contact details']
+                    ul.footer__list-one
+                        h5= column
+                        //- each list in ['Head Office: Avenue Fashion,', '180-182 Regent Street, London.', 'Telephone: 0123-456-789', 'Email: support@yourwebsite.com']
+                        - 
+                            var footerCol = [
+                                { title: 'Head Office: Avenue Fashion', url: false},
+                                { title: '180-182 Regent Street, London', url: false},
+                                { title: 'Telephone: 0123-456-789', url: 'tel: 0123-456-789'},
+                                { title: 'Email: support@yourwebsite.com', url: 'mailto: support@yourwebsite.com'},
+                            ];
+                        
+                        each list in footerCol
+                            li.footer__item
+                                if list.url
+                                    a.footer__link(href= list.url)= list.title
+                                else 
+                                    .footer__link= list.title
+            //- .content.avards__block
+            //-     .avards
+            //-         .avards__text
+            //-             | award winner 
+            //-             .avards__p
+            //-                 | fashion awards 2016 
+            //-     .iconSocial
+            //-         a(href='#')
+            //-             img.fb(src="/img/Layer 1.png", alt="")
+            //-         a(href='#')
+            //-             img.fb(src="/img/Layer 2.png", alt="")
+            //-         a(href='#')
+            //-             img.fb(src="/img/Layer 3.png", alt="")
+            //-         a(href='#')
+            //-             img.fb(src="/img/Layer 4.png", alt="")
+        .copyright
+            div.content
+                .copy
+                    | © 2016 Avenue Fashion™
+                ul.design
+                    li.design__list
+                        a.design__list-link(href='#')
+                            | Design by RobbyDesigns.com          
+                    li.design__list
+                        a.design__list-link(href='#')
+                            | Dev by Loremipsum.com
+    
+    script(src="/js/script.js")
